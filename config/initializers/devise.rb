@@ -6,7 +6,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  config.secret_key = '2c024dfe4f4708003bd644ebea912b9d514cd0d082ef54eb7cef018fd4fc5cf94acbd2a784d4a16032c7e5a3fef01beb9a502352ec8f238e79b0e9a5d01f5a00'
+  # config.secret_key = '7d99a053076d12b2446b12113b735868bf2c5a1540478871798e99ce71ac101a95df61384b094eab8921c56fe041e2a00c9538b73e6d7ea9c6feca96201c30dc'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -108,7 +108,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = '7b1ae9fdbe0466df233cdd3096f4749240b746e6da92cdb14b489c1097debf676d589f3932ddf88ae6830162fe6de826e45bf6230f371a6832469f4fd12e1820'
+  # config.pepper = '0f7e9101e72ba5a1d48cb2741fb6da5bf05042be62c5e1c534ce3b0eb4af8d1277d3a3706d038eed7b212c1ca1284bb15c74c3429d80543fb3d21a8d3807cff0'
 
   # Send a notification email when the user's password is changed
   # config.send_password_change_notification = false
@@ -273,10 +273,11 @@ Devise.setup do |config|
   # config.omniauth_path_prefix = '/my_engine/users/auth'
 
   if Rails.env.production?
-      config.omniauth :facebook, ENV["FACEBOOK_ID_PRODUCTION"], ENV["FACEBOOK_SECRET_PRODUCTION"], scope: 'email', display: 'popup', info_fields: 'name, email'
-      config.omniauth :twitter, ENV["TWITTER_ID_PRODUCTION"], ENV["TWITTER_SECRET_PRODUCTION"], scope: 'email', display: 'popup', info_fields: 'name, email'
-    else
-      config.omniauth :facebook, ENV["FACEBOOK_ID_DEVELOPMENT"], ENV["FACEBOOK_SECRET_DEVELOPMENT"], scope: 'email', display: 'popup', info_fields: 'name, email'
-      config.omniauth :twitter, ENV["TWITTER_ID_DEVELOPMENT"], ENV["TWITTER_SECRET_DEVELOPMENT"], scope: 'email', display: 'popup', info_fields: 'name, email'
-    end
+    config.omniauth :facebook, ENV["FACEBOOK_ID_PRODUCTION"], ENV["FACEBOOK_SECRET_PRODUCTION"], scope: 'email', display: 'popup', info_fields: 'name, email'
+    config.omniauth :twitter, ENV["TWITTER_ID_PRODUCTION"], ENV["TWITTER_SECRET_PRODUCTION"], scope: 'email', display: 'popup', info_fields: 'name, email'
+  else
+    config.omniauth :facebook, ENV["FACEBOOK_ID_DEVELOPMENT"], ENV["FACEBOOK_SECRET_DEVELOPMENT"], scope: 'email', display: 'popup', info_fields: 'name, email'
+    config.omniauth :twitter, ENV["TWITTER_ID_DEVELOPMENT"], ENV["TWITTER_SECRET_DEVELOPMENT"], scope: 'email', display: 'popup', info_fields: 'name, email'
+  end
+
 end
