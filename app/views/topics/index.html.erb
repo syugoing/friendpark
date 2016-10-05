@@ -6,12 +6,20 @@
     <%= link_to "投稿する", new_topic_path, class: 'btn btn-default' %>
     <% @topics.reverse.each do |topic| %>
       <div class="row">
-        <%= link_to topic_path(topic) do %>
-          <p style="display:inline;"><strong><%= topic.content%></strong></p>
-        <% end %>
-        <%= topic.user.name %>
+        <%= profile_img(topic.user) if profile_img(topic.user) %>
+        <div style="display:inline;">&nbsp;&nbsp;&nbsp;<%= topic.user.name %>さんが投稿しました。</div>
+        <p><strong><%= topic.content%></strong></p>
         <%= link_to "編集", edit_topic_path(topic.id), class: 'btn btn-default btn-sm btn-success' %>
         <%= link_to "削除", topic_path(topic.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-default btn-sm btn btn-danger' %>
+
+        <% @id = topic.id%>
+
+      <p>コメント一覧</p>
+      <div id="comments_area">
+        <%= render partial: 'comments/index', locals: { comments: @comments, topic: @topic } %>
+      </div>
+      <%= render partial: 'comments/form', locals: { comment: @comment, id: @id} %>
+
       </div>
     <% end %>
 

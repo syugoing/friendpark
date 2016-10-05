@@ -3,6 +3,10 @@ class TopicsController < ApplicationController
 
   def index
     @topics = Topic.all
+    @topic = Topic.new
+    @comments = Comment.all
+    @comment = @topic.comments.build
+    @id = 0
   end
 
   def show

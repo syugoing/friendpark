@@ -1,0 +1,17 @@
+<ul>
+  <% comments.each do |comment| %>
+    <% unless comment.id.nil? %>
+     <% if comment.topic_id == @id then %>
+      <li>
+        <p class="left"><%= comment.user.name %>さんがコメントしました。</p>
+        <p class="left"><%= comment.content %></p>
+        <% if current_user.id == comment.user.id %>
+          <p class="right">
+
+          </p>
+        <% end %>
+      </li>
+      <% end %>
+    <% end %>
+  <% end %>
+</ul>
