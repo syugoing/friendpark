@@ -1,12 +1,8 @@
 Rails.application.routes.draw do
 
-  get 'relationships/create'
-
-  get 'relationships/destroy'
-
   root 'topics#index'
   resources :topics
-  resources :comments, only: [:create]
+  resources :comments, only: [:create, :edit, :update, :destroy]
 
   devise_for :users, controllers: {
     registrations: "users/registrations",

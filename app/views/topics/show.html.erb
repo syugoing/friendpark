@@ -1,2 +1,31 @@
-<h1>Topics#show</h1>
-<p>Find me in app/views/topics/show.html.erb</p>
+<div class="container">
+  <div class="wrapper col-md-8 col-md-offset-2 col-sm-10">
+    <h2>記事詳細</h2>
+    <p id="notice"><%= notice %></p>
+
+      <div class="child row">
+        <div class="wrapper col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
+          <div class="topic-text">
+            <%= profile_img(@topic.user) if profile_img(@topic.user) %>
+            <h5 style="display:inline;">&nbsp;&nbsp;&nbsp;<%= @topic.user.name  %>が投稿しました。</h5>
+            <p class="left"><strong>内容</strong></p>
+            <p class="left"><%= @topic.content %></p>
+            <p class="right">
+              <% if current_user.id == @topic.user_id %>
+                <%= link_to '編集', edit_topic_path(@topic), class: 'btn btn-default btn-sm btn-success'  %></br>
+              <% end %>
+              <strong>作成時間:</strong>
+              <%= @topic.created_at.strftime("%y/%m/%d %p %l:%M") %>
+          </div>
+          <% @topic_id = @topic.id%>
+          <p>コメント一覧</p>
+          <div id="comments_area">
+            <%= render partial: 'comments/index', locals: { comments: @comments, topic: @topic, id: @topic_id } %>
+          </div>
+          <%= render partial: 'comments/form', locals: { comment: @comment, id: @topic_id} %>
+          </br>
+          <%= link_to '戻る', topics_path %>
+        </div>
+      </div>
+  </div>
+</div>

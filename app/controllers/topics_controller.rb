@@ -6,10 +6,17 @@ class TopicsController < ApplicationController
     @topic = Topic.new
     @comments = Comment.all
     @comment = @topic.comments.build
-    @id = 0
+    @topic_id = ""
   end
 
   def show
+    @topic = Topic.find(params[:id])
+    @comment = @topic.comments.build
+    @comments = @topic.comments
+    @topic_id = ""
+    if params[:notification_id] != nil then
+      Notification.find(params[:notification_id]).update(read: true)
+    end
   end
 
   def new

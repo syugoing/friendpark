@@ -8,15 +8,18 @@
       <div class="row">
         <%= profile_img(topic.user) if profile_img(topic.user) %>
         <div style="display:inline;">&nbsp;&nbsp;&nbsp;<%= topic.user.name %>さんが投稿しました。</div>
-        <p><strong><%= topic.content%></strong></p>
-        <%= link_to "編集", edit_topic_path(topic.id), class: 'btn btn-default btn-sm btn-success' %>
-        <%= link_to "削除", topic_path(topic.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-default btn-sm btn btn-danger' %>
+        <p><strong><%= topic.content.truncate(33)%></strong></p>
+        <%= link_to "詳細", topic_path(topic.id), class: 'btn btn-default btn-sm btn-success' %>
+        <% if current_user.id == topic.user_id %>
+          <%= link_to "編集", edit_topic_path(topic.id), class: 'btn btn-default btn-sm btn-success' %>
+          <%= link_to "削除", topic_path(topic.id), method: :delete, data: { confirm: '本当に削除していいですか？'}, class: 'btn btn-default btn-sm btn btn-danger' %>
+        <% end %>
 
-        <% @id = topic.id%>
+        <% @topic_id = topic.id%>
 
       <p>コメント一覧</p>
       <div id="comments_area">
-        <%= render partial: 'comments/index', locals: { comments: @comments, topic: @topic } %>
+        <%= render partial: 'comments/index', locals: { comments: @comments, topic: @topic, id: @topic_id } %>
       </div>
       <%= render partial: 'comments/form', locals: { comment: @comment, id: @id} %>
 
