@@ -7,6 +7,7 @@ class TopicsController < ApplicationController
     @comments = Comment.all
     @comment = @topic.comments.build
     @topic_id = ""
+    @users = User.all
   end
 
   def show

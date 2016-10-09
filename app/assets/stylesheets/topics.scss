@@ -97,6 +97,7 @@ html {
 
 body {
   text-align: center;
+  background-color: #e9ebee;
 }
 
 .page-top-btn {
@@ -123,12 +124,11 @@ body {
 }
 
 .flash {
-color: white;
+color: black;
 padding-top: 10px;
 }
 
 .wrapper {
-  margin: 0px auto 74px;
   padding: 20px 20px 20px 35px;
   .row {
     border-bottom: 1px solid #ccc;
@@ -143,4 +143,20 @@ input[type="submit"].btn-block{
 
 .container{
   padding-bottom: 85px;
+}
+
+.icon{
+  display: inline-block;
+  max-width:48px;
+  max-height:48px;
+  border:gray double 4px;
+}
+
+.topic{
+  background-color: white;
+  margin-top: 7px;
+}
+
+.friend{
+  background-color: white;
 }

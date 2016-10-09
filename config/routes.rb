@@ -9,7 +9,10 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
 
-  resources :users, only: [:index]
+  resources :conversations do
+    resources :messages
+  end
+  resources :users, only: [:index, :show, :edit, :updates]
   resources :relationships, only: [:create, :destroy]
 
   if Rails.env.development?
