@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'notifications/index'
+
   root 'topics#index'
   resources :topics
   resources :comments, only: [:create, :edit, :update, :destroy]

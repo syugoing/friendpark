@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008114213) do
+ActiveRecord::Schema.define(version: 20161009104823) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,19 @@ ActiveRecord::Schema.define(version: 20161008114213) do
 
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
   add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
+
+  create_table "notifications", force: :cascade do |t|
+    t.boolean  "read",       default: false
+    t.integer  "user_id"
+    t.integer  "comment_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "message_id"
+  end
+
+  add_index "notifications", ["comment_id"], name: "index_notifications_on_comment_id", using: :btree
+  add_index "notifications", ["message_id"], name: "index_notifications_on_message_id", using: :btree
+  add_index "notifications", ["user_id"], name: "index_notifications_on_user_id", using: :btree
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id"
@@ -97,4 +110,7 @@ ActiveRecord::Schema.define(version: 20161008114213) do
   add_foreign_key "comments", "users"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
+  add_foreign_key "notifications", "comments"
+  add_foreign_key "notifications", "messages"
+  add_foreign_key "notifications", "users"
 end

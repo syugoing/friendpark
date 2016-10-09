@@ -15,6 +15,7 @@ class TopicsController < ApplicationController
     @comment = @topic.comments.build
     @comments = @topic.comments
     @topic_id = ""
+    Notification.find(params[:notification_id]).update(read: true) if params[:notification_id]
     if params[:notification_id] != nil then
       Notification.find(params[:notification_id]).update(read: true)
     end

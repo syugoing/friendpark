@@ -9,7 +9,7 @@
         <% @topics.reverse.each do |topic| %>
           <% if (current_user.following?(topic.user) && topic.user.following?(current_user)) || topic.user == current_user then %>
             <div class="row topic">
-              <p class="icon"><%= profile_img(topic.user) if profile_img(topic.user) %></ps>
+              <p class="icon"><%= profile_img(topic.user) if profile_img(topic.user) %></p>
               <div style="display:inline;">&nbsp;&nbsp;&nbsp;<%= topic.user.name %>さんが <%=topic.updated_at.strftime("%Y-%m-%d %H:%M")%> に投稿しました。</div>
               <p><strong><%= topic.content.truncate(33)%></strong></p>
               <%= link_to "詳細", topic_path(topic.id), class: 'btn btn-default btn-sm btn-success' %>
