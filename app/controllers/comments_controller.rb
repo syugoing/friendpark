@@ -34,7 +34,9 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(comment_params)
     @topic = @comment.topic
     @topic_id = @topic.id
-    @notification = @comment.notifications.build(user_id: @topic.user.id )
+    unless @comment.topic.user_id == current_user.id
+      @notification = @comment.notifications.build(user_id: @topic.user.id )
+    end
 
     respond_to do |format|
       if @comment.save

@@ -6,4 +6,8 @@ module TopicsHelper
       topic_path
     end
   end
+
+  def send_img(topic)
+    return image_tag(topic.picture, alt: topic.user.name )
+  end
 end

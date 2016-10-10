@@ -12,6 +12,9 @@
               <p class="icon"><%= profile_img(topic.user) if profile_img(topic.user) %></p>
               <div style="display:inline;">&nbsp;&nbsp;&nbsp;<%= topic.user.name %>さんが <%=topic.updated_at.strftime("%Y-%m-%d %H:%M")%> に投稿しました。</div>
               <p><strong><%= topic.content.truncate(33)%></strong></p>
+              <% if topic.picture != nil then%>
+                <%= send_img(topic) %></br>
+              <%end%>
               <%= link_to "詳細", topic_path(topic.id), class: 'btn btn-default btn-sm btn-success' %>
               <% if current_user.id == topic.user_id %>
                 <%= link_to "編集", edit_topic_path(topic.id), class: 'btn btn-default btn-sm btn-success' %>

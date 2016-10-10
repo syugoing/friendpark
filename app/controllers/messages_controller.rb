@@ -24,14 +24,19 @@ class MessagesController < ApplicationController
 
   def create
     @message = @conversation.messages.build(message_params)
-    @notification = @message.notifications.build(user_id: @message.conversation.recipient_id )
+    unless @message.user_id == current_user.id
+      @notification = @message.notifications.build(user_id: @message.conversation.recipient_id )
+    end
     if @message.save
       redirect_to conversation_messages_path(@conversation)
       unless @message.user_id == current_user.id
+        binding.pry
         Pusher.trigger("user_#{@message.user_id}_channel", 'message_created', {
             message: 'あなたにメッセージが届きました'
           })
       end
+    else
+      redirect_to conversation_messages_path(@conversation)
     end
   end
 

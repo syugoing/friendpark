@@ -1,5 +1,6 @@
 class TopicsController < ApplicationController
   before_action :authenticate_user!
+  PERMISSIBLE_ATTRIBUTES = %i(name picture picture_cache)
 
   def index
     @topics = Topic.all
@@ -62,7 +63,7 @@ class TopicsController < ApplicationController
 
   private
     def topics_params
-      params.require(:topic).permit(:content)
+      params.require(:topic).permit(:content, :picture)
     end
 
 end
