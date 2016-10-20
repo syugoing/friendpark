@@ -4,7 +4,7 @@ lock '3.6.0'
 set :application, 'friendpark'
 
 # cloneするgitのレポジトリ（xxxxxxxx：ユーザ名、yyyyyyyy：アプリケーション名）
-set :repo_url, 'git@github.com:syugoing/friendpark.git'
+set :repo_url, 'https://github.com/syugoing/friendpark'
 
 # deployするブランチ。デフォルトはmasterなのでなくても可。
 set :branch, ENV['BRANCH'] || 'master'
