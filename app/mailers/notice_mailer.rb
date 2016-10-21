@@ -3,7 +3,7 @@ class NoticeMailer < ApplicationMailer
   def sendmail_topic(topic)
     @topic = topic
 
-    mail to: "shugo.sawada.18@gmail.com",
+    mail to: @topic.user.email,
           subject: '【FriendPark】投稿がありました'
   end
 end
