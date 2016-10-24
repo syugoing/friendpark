@@ -13,7 +13,7 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { host: 'still-atoll-55278.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: '52.37.235.201s' }
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings =
   {
