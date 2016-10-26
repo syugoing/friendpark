@@ -14,8 +14,6 @@ CarrierWave.configure do |config|
     when 'production'
       config.fog_directory = 'friendpark-development'
       config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/friendpark-development'
-      # config.fog_directory = 'friendpark-production'
-      # config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/friendpark-production'
     when 'development'
       config.fog_directory = 'friendpark-development'
       config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/friendpark-development'

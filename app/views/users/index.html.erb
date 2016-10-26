@@ -9,7 +9,7 @@
                 <% if current_user.following?(user) && user.following?(current_user) then %>
                 <%= link_to 'メッセージ', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post', class: 'btn btn-default btn-sm btn-success'%>
                 <% end %>
-                <%= render partial: 'follow_form', locals: { user: user } if signed_in?   %>
+                <%= render partial: 'follow_form', locals: { user: user } if signed_in?   %></br>
             </div>
         <% end %>
       </div>
