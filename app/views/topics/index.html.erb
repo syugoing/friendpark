@@ -36,7 +36,7 @@
         <h2>友達</h2>
         <% @users.each do |user| %>
             <div class="container-child">
-              <% if user.id != current_user.id && current_user.following?(user) && !(user.following?(user)) then%>
+              <% if user.id != current_user.id && current_user.following?(user) && !(user.following?(current_user)) then%>
                     <div class="item">
                       <p class="icon"><%= profile_img(user) %></p>
                       <%= link_to user.name, user %>
